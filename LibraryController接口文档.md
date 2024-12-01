@@ -31,10 +31,10 @@ github仓库：https://github.com/Soulmate404/LibraryController.git
    调用以检查用户是否存在，返回具体权限等级（0为管理员，1为普通用户，-1为用户不存在）.
 
    ```c
-   int ResetPass(char* pass)
+   int ResetPass(int id，char* pass)
    ```
 
-   修改密码
+   修改密码（0为成功，-1为失败）
 
 2. 图书管理
 
@@ -51,19 +51,19 @@ github仓库：https://github.com/Soulmate404/LibraryController.git
    返回书籍的剩余数量
 
    ```(
-   MYSQL_RES* SelectByID(int id)
+   MYSQL_ROW SelectByID(int id)
    ```
 
-   通过ID检索书籍，返回`MYSQL_RES`指针，可以理解为一个指向`char**`的指针,即一个指向二维数组的指针,这个二维数组存储了返回的全部信息
+   通过ID检索书籍，直接理解为返回一个char*类型的数组即可，如果不存在则返回NULL
 
    ```c
-   MYSQL_RES* SelectByName(char* name)
+   MYSQL_ROWS SelectByName(char* name)
    ```
 
-   通过书名查找书籍，支持简单的模糊查询，同样的返回`MYSQL_RES`指针
+   通过书名查找书籍，支持简单的模糊查询，同样的返回`MYSQL_ROWS`指针
 
    ```c
-   int AddBorrow(int userid,int name,int bookid,char* time)
+   int AddBorrow(int userid,char* name,int bookid,char* time)
    ```
 
    借书登记，输入借书人与对应书籍的ID,借书时间，返回0表示成功，-1表示失败
