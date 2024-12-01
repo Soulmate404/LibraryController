@@ -15,5 +15,9 @@ add_executable(LibraryController Controller/code/main.c
         Mapper/head/administratorMapper.h
         Service/head/userLoginService.h
         Service/head/bookLendService.h
-        Service/head/administratorService.h)
+        Service/head/administratorService.h
+        Mapper/code/userLoginMapper.c
+        Mapper/code/userLoginMapper.c
+        Mapper/code/userLoginMapper.c
+)
 target_link_libraries(LibraryController libmysql)

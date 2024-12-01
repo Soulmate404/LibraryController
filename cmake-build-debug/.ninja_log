@@ -1,3 +1,14 @@
 # ninja log v6
 9	716	7545485349559241	CMakeFiles/LibraryController.dir/main.c.obj	41634eebbd6c7d97
-717	904	7545485356638613	LibraryController.exe	a1dbbc24960ba3a9
+692	833	7547507493056056	LibraryController.exe	948fe0e85fbd7172
+6	691	7547507486192563	CMakeFiles/LibraryController.dir/Controller/code/main.c.obj	b32a80f8d893c43c
+21	837	7547470289620439	CMakeFiles/LibraryController.dir/Mapper/code/UserloginMapper.c.obj	324da05dc8bd9f1c
+5	693	7547507091527219	CMakeFiles/LibraryController.dir/Mapper/code/userLoginMapper.c.obj	c417a430c37599bf
+5	678	7547494942394134	CMakeFiles/LibraryController.dir/Mapper/code/mysqlPointer.c.obj	45e615ff5820b1de
+6	1102	7547509535729716	CMakeFiles/LibraryController.dir/Controller/code/main.c.obj	b32a80f8d893c43c
+18	1124	7547509535850611	CMakeFiles/LibraryController.dir/Mapper/code/userLoginMapper.c.obj	c417a430c37599bf
+1134	1285	7547509547008541	LibraryController.exe	948fe0e85fbd7172
+5	727	7547512599172056	CMakeFiles/LibraryController.dir/Mapper/code/userLoginMapper.c.obj	c417a430c37599bf
+727	884	7547512606392443	LibraryController.exe	948fe0e85fbd7172
+5	676	7547513864246215	CMakeFiles/LibraryController.dir/Mapper/code/userLoginMapper.c.obj	c417a430c37599bf
+677	818	7547513870964010	LibraryController.exe	948fe0e85fbd7172

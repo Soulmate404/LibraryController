@@ -4,8 +4,9 @@
 
 #ifndef LIBRARYCONTROLLER_USERLOGINMAPPER_H
 #define LIBRARYCONTROLLER_USERLOGINMAPPER_H
-
-int CheckUser(char* id,char* pass_wd);
+void init();
+int CheckUser(int id,char* pass_wd);
 int ResetPass(char* pass);
+
 
 #endif //LIBRARYCONTROLLER_USERLOGINMAPPER_H
