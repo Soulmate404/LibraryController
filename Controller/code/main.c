@@ -7,7 +7,7 @@
 int main(void){
     init();
     int id=1;
-    char* pass="guo21345";
+    char* pass="guo12345";
     int a=CheckUser(id,pass);
     printf("%d",a);
 
