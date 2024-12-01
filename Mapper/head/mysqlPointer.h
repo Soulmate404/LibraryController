@@ -10,4 +10,5 @@
 extern MYSQL *conn;
 extern MYSQL_RES *res;
 extern MYSQL_ROW row;
+extern MYSQL_STMT* stmt ;
 #endif //LIBRARYCONTROLLER_MYSQLPOINTER_H

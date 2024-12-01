@@ -19,7 +19,7 @@ int CheckBook(int id) {
     res = mysql_use_result(conn);
     if ((row = mysql_fetch_row(res))) {
         mysql_free_result(res);
-        return 0
+        return 0;
     } else {
         mysql_free_result(res);
         return -1;
@@ -41,7 +41,7 @@ int GetBookNum(int id) {
 
     res = mysql_use_result(conn);
     if ((row = mysql_fetch_row(res))) {
-        int a=row[3];
+        int a=atoi(row[3]);
         mysql_free_result(res);
         return a;
     } else {
@@ -62,7 +62,7 @@ MYSQL_ROW SelectByID(int id){
         fprintf(stderr, "SQL error: %s\n", mysql_error(conn));
         return NULL;
     }
-    res= mysql_use_result(res);
+    res= mysql_use_result(conn);
     return mysql_fetch_row(res);
 }
 MYSQL_ROWS SelectByName(char* name){
@@ -74,26 +74,36 @@ MYSQL_ROWS SelectByName(char* name){
 
     if (mysql_query(conn, sql)) {
         fprintf(stderr, "SQL error: %s\n", mysql_error(conn));
-        return (MYSQL_ROWS) NULL;
+        MYSQL_ROWS s;
+        s.data=NULL;
+        s.next=NULL;
+        return  s;
     }
-    MYSQL_ROWS rows;
-    res= mysql_use_result(res);
-    int i=0;
-    while ((row= mysql_fetch_row(res))){
-        rows[i]=row;
-        i++;
-    }
-    return rows;
+    MYSQL_ROWS* left,*right,*head;
+    res= mysql_use_result(conn);
+    head->data=left->data= mysql_fetch_row(res);
+   while(( right->data= mysql_fetch_row(res))){
+       left->next= right;
+   }
+   left->next=NULL;
+    return *head;
 }
-int AddBorrow(int userid,char* name,int bookid,char* time){
-    char sql[256];
-    strcpy(sql, "insert into borrow ");
-    strcat(sql, "'%");
-    strcat(sql, name);
-    strcat(sql, "%';");
+int AddBorrow(int userid, char* name, int bookid, char* time) {
+    if (conn == NULL) {
+        fprintf(stderr, "Database connection is not initialized.\n");
+        return -1;
+    }
+
+
+    char sql[512];
+    sprintf(sql, "INSERT INTO borrow (user_id, name, book_id, borrow_time) VALUES (%d, '%s', %d, '%s');",
+            userid, name ? name : "NULL", bookid, time ? time : "NULL");
+
 
     if (mysql_query(conn, sql)) {
         fprintf(stderr, "SQL error: %s\n", mysql_error(conn));
-        return (MYSQL_ROWS) NULL;
+        return -1;
     }
+
+    return 0;
 }
