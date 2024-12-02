@@ -15,12 +15,11 @@ int CheckBook(int id) {
         fprintf(stderr, "SQL error: %s\n", mysql_error(conn));
         return -1;
     }
-
-    res = mysql_use_result(conn);
-    if ((row = mysql_fetch_row(res))) {
+    res= mysql_use_result(conn);
+    if((row= mysql_fetch_row(res))){
         mysql_free_result(res);
         return 0;
-    } else {
+    } else{
         mysql_free_result(res);
         return -1;
     }
@@ -67,7 +66,7 @@ MYSQL_ROW SelectByID(int id){
 }
 MYSQL_ROWS SelectByName(char* name){
     char sql[256];
-    strcpy(sql, "SELECT * FROM book WHERE id like ");
+    strcpy(sql, "SELECT * FROM book WHERE name like ");
     strcat(sql, "'%");
     strcat(sql, name);
     strcat(sql, "%';");
@@ -104,6 +103,59 @@ int AddBorrow(int userid, char* name, int bookid, char* time) {
         fprintf(stderr, "SQL error: %s\n", mysql_error(conn));
         return -1;
     }
+    if (mysql_affected_rows(conn) > 0) {
+        return 0;
+    } else {
+        return -1;
+    }
 
-    return 0;
+
+}
+int DeleteBorrow(int userid,int bookid){
+    char uID[50];
+    sprintf(uID, "%d", userid);
+    char bID[50];
+    sprintf(bID, "%d", bookid);
+
+    char sql[256];
+    strcpy(sql, "DELETE FROM borrow WHERE user_id= ");
+    strcat(sql, uID);
+    strcat(sql, " and book_id =");
+    strcat(sql, bID);
+    strcat(sql, ";");
+
+    if (mysql_query(conn, sql)) {
+        fprintf(stderr, "SQL error: %s\n", mysql_error(conn));
+        return -1;
+    }
+    if (mysql_affected_rows(conn) > 0) {
+        return 0;
+    } else {
+        return -1;
+    }
+}
+int CheckBorrow(int userid,int bookid){
+    char uID[50];
+    sprintf(uID, "%d", userid);
+    char bID[50];
+    sprintf(bID, "%d", bookid);
+
+    char sql[256];
+    strcpy(sql, "SELECT * FROM borrow WHERE user_id= ");
+    strcat(sql, uID);
+    strcat(sql, " and book_id =");
+    strcat(sql, bID);
+    strcat(sql, ";");
+    if (mysql_query(conn, sql)) {
+        fprintf(stderr, "SQL error: %s\n", mysql_error(conn));
+        return -1;
+    }
+    res= mysql_use_result(conn);
+    if((row= mysql_fetch_row(res))){
+        mysql_free_result(res);
+        return 0;
+    } else{
+        mysql_free_result(res);
+        return -1;
+    }
 }

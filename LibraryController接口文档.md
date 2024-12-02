@@ -60,7 +60,7 @@ github仓库：https://github.com/Soulmate404/LibraryController.git
    MYSQL_ROWS SelectByName(char* name)
    ```
 
-   通过书名查找书籍，支持简单的模糊查询，同样的返回`MYSQL_ROWS`指针
+   通过书名查找书籍，支持简单的模糊查询，返回`MYSQL_ROWS`，这是一个
 
    ```c
    int AddBorrow(int userid,char* name,int bookid,char* time)
@@ -78,7 +78,7 @@ github仓库：https://github.com/Soulmate404/LibraryController.git
    int CheckBorrow(int userid,int bookid)
    ```
 
-   用以确认有对应的记录，返回对应的记录条数
+   用以确认有对应的记录，有返回对应的数量，没有返回-1
 
 3. 管理员操作
 
@@ -95,7 +95,7 @@ github仓库：https://github.com/Soulmate404/LibraryController.git
    检查用户是否存在
 
    ```
-   MYSQL_RES SelectUser(int id)
+   MYSQL_ROW SelectUser(int id)
    ```
 
    通过ID获取用户信息
@@ -131,13 +131,13 @@ github仓库：https://github.com/Soulmate404/LibraryController.git
    修改用户权限等级
 
    ```
-   MYSQL_RES* CheckUserBorrow（int id）
+   MYSQL_ROWS CheckUserBorrow（int id）
    ```
 
    通过ID返回对应用户的借书情况，注意，由于res指针包含其他信息，即使不存在对应信息也不回返回NULL，需要额外的校验
 
    ```c
-   MYSQL_RES* CheckAllBorrow（）
+   MYSQL_ROWS CheckAllBorrow（）
    ```
 
    检索全部的借阅
