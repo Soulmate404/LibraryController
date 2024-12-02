@@ -87,6 +87,7 @@ MYSQL_ROWS SelectByName(char* name){
    left->next=NULL;
     return *head;
 }
+
 int AddBorrow(int userid, char* name, int bookid, char* time) {
     if (conn == NULL) {
         fprintf(stderr, "Database connection is not initialized.\n");
